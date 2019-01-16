@@ -6,22 +6,7 @@ const mongoose = require('mongoose')
 /* instancia de express */
 const app = express()
 
-/* creacion de esquemas con mongoose */
-let schema = mongoose.Schema
 
-
-/* instancia de esquema 
-    para usuarios */
-let usuarioSchema = new Schema({
-    nombre:{
-        type: string,
-        required: [true,'El nombre de usuario es requerido'] 
-    },
-    apellido:{
-        type: string,
-        required: [true, 'El apellido de usuario es requerido']
-    }
-})
 
 
 /* metodo get para obtencion de usuarios */
@@ -58,4 +43,3 @@ app.delete('/user', function(req, res) {
     res.send('delete user')
 })
 
-module.exports = mongoose.model('Usuario', usuarioSchema)
