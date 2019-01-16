@@ -1,5 +1,6 @@
 /*  Dependencias */
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 /* creacion de esquemas con mongoose */
 let Schema = mongoose.Schema
@@ -22,8 +23,10 @@ let usuarioSchema = new Schema({
         number : 
             {type : Number, required: true}
     }],
-    plan_id :                                       /* id, del plan que va a tener */
-        {type : Schema.Types.ObjectId, required: true},
+    dni : {type: Number,unique : true, requerid: true} /* Solo puede haber un dni */
+    ,
+    // plan_id :                                       /* id, del plan que va a tener */
+    //     {type : Schema.Types.ObjectId, required: true},
     meses_deuda : [{                                /* deuda por defecto en 0 */
         cant_meses : {type: Number, default: 0},
         meses : {type : Array, default: 0}
@@ -35,5 +38,7 @@ let usuarioSchema = new Schema({
     email: {type: String, required: false},         /* Correo electronico */
     state: {type: Boolean, default : true}            /* estado activo, si cancela el plan y su deuda total es 0, pasa a falso y no se muestra mas. */
 })
+
+usuarioSchema.plugin( uniqueValidator , { message : '{PATH} debe ser unico.'})
 
 module.exports = mongoose.model('Usuario', usuarioSchema)
