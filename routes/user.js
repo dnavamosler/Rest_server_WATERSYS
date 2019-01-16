@@ -32,14 +32,10 @@ app.get('/user', function(req, res) {
                     err
                 });
             }
-
-
                 res.json({
                     ok: true,
                     usuarios
                 })
-
-            
         })
 })
 
@@ -105,10 +101,27 @@ app.post('/user', function(req, res) {
 
 
 /* metodo delete para borrado de users */
-/* app.delete('/user', function(req, res) {
+app.delete('/user/:id', function(req, res) {
+    let id = req.params.id
+    let body = req.body
 
-    res.send('delete user')
+    let cambiarEstado ={
+        state : false
+    }
+
+    User.findByIdAndUpdate(id, cambiarEstado , {new:true}, (err , usuarioDb ) => {
+        if(err){
+            return res.status(400).json({
+                ok: false,
+                err
+            })
+        }
+        res.json({
+            ok: true,
+            usuario: usuarioDb
+        })
+    })
 })
- */
+
 
  module.exports = app
