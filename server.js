@@ -1,49 +1,28 @@
 /*=============================
         DEPENDENCIAS
 ================================*/
-
+const mongoose = require('mongoose')
 var express = require('express')
 var bodyParser = require('body-parser')
+
+/* Configuracion general del servicio */
 require('./config/config')
 
-var app = express()
+/* Conexion a base de datos */
+mongoose.connect('mongodb://localhost:27017/water-sys', (err , res) => {
+    if(err) return console.log(err)
+    
+    console.log(`Base de datos ONLINE!!`)
+});
+
+
+const app = express()
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
-
-app.get('/user', function(req, res) {
-    res.json('get user')
-})
-
-
-app.post('/user', function(req, res) {
-    let body = req.body
-
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: "Es necesario mandar el nombre"
-        })
-    } else {
-        res.json({ usuario: body })
-    }
-})
-
-app.put('/user/:id', function(req, res) {
-
-    let id = req.params.id
-
-    res.json({ id })
-})
-
-app.delete('/user', function(req, res) {
-
-    res.send('delete user')
-})
 
 
 app.listen(process.env.PORT, () => {
