@@ -16,11 +16,7 @@ let categoryValid = {
 
 let reporteSchema = new Schema({
 
-    /* Se guarda la fecha en el momento que se realizo el post */
-    date: {
-        type: Date,
-        required: true
-    },
+    
     /* Se guarda la categoria de 4 posibles opciones
         *REMITO =>  se ingresa una cantidad de bidones
         *ABONO  =>  se ingresa una cantidad de dinero
@@ -29,6 +25,12 @@ let reporteSchema = new Schema({
 
         Al realizar un reporte, se debe alterar el registro de usuario con la nueva informacion.
         */
+
+        /* Se guarda la fecha en el momento que se realizo el post */
+    date: {
+        type: Date,
+        required: true
+    },
     category : {
         type: String,
         required: true,
@@ -44,7 +46,7 @@ let reporteSchema = new Schema({
     },
     id_usuario : {
         type: Schema.Types.ObjectId,
-        required : true0
+        required : true
     },
     monto_abonado : {
         type : Number,
@@ -69,4 +71,4 @@ let reporteSchema = new Schema({
 reporteSchema.plugin( uniqueValidator, { message : '{PATH} debe ser unico.'})
 
 /* Exportar modulo */
-module.exports = mongoose.model('Cliente', clienteSchema)
+module.exports = mongoose.model('reporte', reporteSchema)
