@@ -1,7 +1,7 @@
 /* Importacion de dependencias */
 
 const express = require('express')
-const User = require('../models/client')
+const User = require('../models/user')
 const bcrypt = require('bcryptjs');
 
 /* instancia de express */
@@ -14,6 +14,7 @@ const app = express()
 // app.get('/user', function(req, res) {
 //     res.json('get user')
 // })
+
 
 /* metodo post para creacion de users */
 app.post('/user', function(req, res) {
@@ -50,12 +51,12 @@ app.post('/user', function(req, res) {
 
 /* metodo put para actualizacion de users */
 
- app.put('/user', function(req, res) {
+ /* app.put('/user', function(req, res) {
 
     // let id = req.params.id esto es para pasar parametros por id
 
     res.json({ id })
-}) 
+})  */
 
 
 /* metodo delete para borrado de users */

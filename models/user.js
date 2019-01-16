@@ -29,11 +29,11 @@ let userSchema = new Schema({
 
 userSchema.plugin( uniqueValidator , { message : '{PATH} debe ser unico.'})
 
-usuarioSchema.methods.toJSON = function(){
-    let user = this         /* obtiene el this actual */
-    let userObject = user.toObject()        /* declara el esquema como objeto */
-    delete userObject.password      /* elimina el password */
-    return userObject
-}
+    userSchema.methods.toJSON = function(){
+        let user = this         /* obtiene el this actual */
+        let userObject = user.toObject()        /* declara el esquema como objeto */
+        delete userObject.password      /* elimina el password */
+        return userObject
+    }
 
 module.exports = mongoose.model('User', userSchema)
