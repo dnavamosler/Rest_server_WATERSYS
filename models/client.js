@@ -7,15 +7,15 @@ let Schema = mongoose.Schema
 
 
 /* instancia de esquema 
-    para usuarios */
-let usuarioSchema = new Schema({
-    name : [{                                    /* Nombre y apellido del usuario */
+    para clientes */
+let clienteSchema = new Schema({
+    name : [{                                    /* Nombre y apellido del cliente */
         first_name : 
             { type: String, required: true},
         last_name : 
         {type: String, required: true}
     }],
-    address : [{                                   /* Direccion del usuario */
+    address : [{                                   /* Direccion del cliente */
         city : 
             {type : String, required: true},
         street: 
@@ -39,6 +39,6 @@ let usuarioSchema = new Schema({
     state: {type: Boolean, default : true}            /* estado activo, si cancela el plan y su deuda total es 0, pasa a falso y no se muestra mas. */
 })
 
-usuarioSchema.plugin( uniqueValidator , { message : '{PATH} debe ser unico.'})
+clienteSchema.plugin( uniqueValidator , { message : '{PATH} debe ser unico.'})
 
-module.exports = mongoose.model('Usuario', usuarioSchema)
+module.exports = mongoose.model('Cliente', clienteSchema)

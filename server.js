@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 /* importacion de rutas POSTERIORMENTE SERA MODIFICADO */
-app.use( require('./routes/user'))
+app.use( require('./routes/client'))
 
 /* Conexion a base de datos */
 mongoose.connect('mongodb://localhost:27017/water-sys', (err , res) => {
