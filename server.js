@@ -24,7 +24,7 @@ app.use( require('./routes/user'))
 app.use( require('./routes/reporte'))
 
 /* Conexion a base de datos */
-mongoose.connect('mongodb://localhost:27017/water-sys', (err , res) => {
+mongoose.connect(process.env.URLDB, (err , res) => {
     if(err) throw(err)
     
     console.log(`Base de datos ONLINE!!`)

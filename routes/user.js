@@ -21,7 +21,7 @@ app.get('/user', function(req, res) {
     let limite = req.query.limite || 5;
     limite = Number(limite);
 
-    User.find()
+    User.find({state : true})
         .skip(desde)
         .limit(limite)
         .exec((err, usuarios) => {
@@ -32,10 +32,14 @@ app.get('/user', function(req, res) {
                     err
                 });
             }
+
+            User.count({state : true}, (err, conteo) => {
                 res.json({
                     ok: true,
-                    usuarios
+                    usuarios,
+                    cuantos : conteo
                 })
+            })
         })
 })
 
