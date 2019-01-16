@@ -21,7 +21,7 @@ let urlDb
 if(process.env.NODE_ENV === 'dev')
     urlDb = 'mongodb://localhost:27017/water-sys'
 else
-    urlDb = 'mongodb://admin:b42da30e@ds159204.mlab.com:59204/water-sys'
+    urlDb = process.env.MONGO_URI
 
 process.env.URLDB = urlDb
 
