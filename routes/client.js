@@ -10,12 +10,12 @@ const app = express()
 
 
 /* metodo get para obtencion de clientes */
-// app.get('/user', function(req, res) {
+// app.get('/client', function(req, res) {
 //     res.json('get user')
 // })
 
 /* metodo post para creacion de clientes */
-app.post('/user', function(req, res) {
+app.post('/client', function(req, res) {
 
     let body = req.body
     
@@ -29,6 +29,7 @@ app.post('/user', function(req, res) {
             street: body.street,
             number: body.number
         },
+        phone : body.phone,
         dni : body.dni
 
         
@@ -54,7 +55,7 @@ app.post('/user', function(req, res) {
 
 /* metodo put para actualizacion de clientes */
 
- app.put('/user', function(req, res) {
+ app.put('/client', function(req, res) {
 
     // let id = req.params.id esto es para pasar parametros por id
 
@@ -63,7 +64,7 @@ app.post('/user', function(req, res) {
 
 
 /* metodo delete para borrado de clientes */
-/* app.delete('/user', function(req, res) {
+/* app.delete('/client', function(req, res) {
 
     res.send('delete user')
 })

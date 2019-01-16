@@ -23,6 +23,7 @@ let clienteSchema = new Schema({
         number : 
             {type : Number, required: true}
     }],
+    phone : {type: String, requerid: true},
     dni : {type: Number,unique : true, requerid: true} /* Solo puede haber un dni */
     ,
     // plan_id :                                       /* id, del plan que va a tener */
