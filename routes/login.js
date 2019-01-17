@@ -44,7 +44,7 @@ const app = express()
             res.json({
                 ok : true,
                 usuario : userDB,
-                token 
+                token  
             })
     })
 
