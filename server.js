@@ -18,10 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-/* importacion de rutas POSTERIORMENTE SERA MODIFICADO */
-app.use( require('./routes/client'))
-app.use( require('./routes/user'))
-app.use( require('./routes/reporte'))
+/* importacion de rutas*/
+app.use( require('./routes/index'))
 
 /* Conexion a base de datos */
 mongoose.connect(process.env.URLDB, (err , res) => {

@@ -8,11 +8,11 @@ const _ = require('underscore');
 /* instancia de express */
 const app = express()
 
-
+const {verificaToken , verificaRol} = require('../middleware/autenticacion')
 
 
 /* metodo get para obtencion de users */
-app.get('/user', function(req, res) {
+app.get('/user', verificaToken,function(req, res) {
 
 
     let desde = req.query.desde || 0;
@@ -45,7 +45,7 @@ app.get('/user', function(req, res) {
 
 
 /* metodo post para creacion de users */
-app.post('/user', function(req, res) {
+app.post('/user', [verificaToken,verificaRol] ,function(req, res) {
 
     let body = req.body
     
@@ -79,7 +79,7 @@ app.post('/user', function(req, res) {
 
 /* metodo put para actualizacion de users */
 
- app.put('/user/:id', function(req, res) {
+ app.put('/user/:id', verificaToken ,function(req, res) {
 
     let id = req.params.id
 
@@ -105,7 +105,7 @@ app.post('/user', function(req, res) {
 
 
 /* metodo delete para borrado de users */
-app.delete('/user/:id', function(req, res) {
+app.delete('/user/:id', verificaToken ,function(req, res) {
     let id = req.params.id
     let body = req.body
 
