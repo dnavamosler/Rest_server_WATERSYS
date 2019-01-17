@@ -15,7 +15,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
           SEED_TOKEN
 /* ===========================  */
 
-process.env.SEED_TOKEN = process.env.SEED_TOKEN || process.env.SEED_TOKEN
+process.env.SEED_TOKEN = process.env.SEED_TOKEN || 'este-es-un-token-de-desarrollo'
 
 /* =========================== /*
           CADUCIDAD_TOKEN
@@ -35,5 +35,5 @@ if(process.env.NODE_ENV === 'dev')
 else
     urlDb = process.env.MONGO_URI
 
-process.env.URLDB = urlDb
+process.env.URL_DB = urlDb
 
