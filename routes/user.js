@@ -12,7 +12,7 @@ const {verificaToken , verificaRol} = require('../middleware/autenticacion')
 
 
 /* metodo get para obtencion de users */
-app.get('/user', verificaToken,function(req, res) {
+app.get('/user',  [verificaToken,verificaRol],function(req, res) {
 
 
     let desde = req.query.desde || 0;
@@ -79,7 +79,7 @@ app.post('/user', [verificaToken,verificaRol] ,function(req, res) {
 
 /* metodo put para actualizacion de users */
 
- app.put('/user/:id', verificaToken ,function(req, res) {
+ app.put('/user/:id',  [verificaToken,verificaRol] ,function(req, res) {
 
     let id = req.params.id
 
@@ -105,7 +105,7 @@ app.post('/user', [verificaToken,verificaRol] ,function(req, res) {
 
 
 /* metodo delete para borrado de users */
-app.delete('/user/:id', verificaToken ,function(req, res) {
+app.delete('/user/:id',  [verificaToken,verificaRol] ,function(req, res) {
     let id = req.params.id
     let body = req.body
 
