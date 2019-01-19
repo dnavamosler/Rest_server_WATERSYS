@@ -16,7 +16,7 @@ var cors = require('cors');
 const app = express()
 
 // use it before all route definitions
-app.use(cors({origin: 'https://water-sys-front.herokuapp.com/'}));
+app.use(cors({origin: 'https://water-sys-front.herokuapp.com'}));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
