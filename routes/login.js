@@ -28,10 +28,17 @@ const app = express()
             }
 
             /* Validar que la contrasenia es correcta */
-            if(!bcrypt.compareSync(body.password,userDB.password)){
+            if(body.password){
+                if(!bcrypt.compareSync(body.password,userDB.password)){
+                    return res.status(400).json({
+                        ok: false,
+                        err: 'El usuario o la (contraseña) es incorrecto.'
+                    })
+                }
+            }else{
                 return res.status(400).json({
-                    ok: false,
-                    err: 'El usuario o la (contraseña) es incorrecto.'
+                    ok:false,
+                    err: 'La contraseña es requerida.'
                 })
             }
 

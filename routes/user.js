@@ -12,9 +12,9 @@ const {verificaToken , verificaRol} = require('../middleware/autenticacion')
 
 
 /* metodo get para obtencion de users */
-app.get('/user',  [verificaToken,verificaRol],function(req, res) {
+app.get('/user',[verificaToken,verificaRol]  ,function(req, res) {
 
-
+    
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
@@ -23,7 +23,7 @@ app.get('/user',  [verificaToken,verificaRol],function(req, res) {
 
     User.find({state : true})
         .skip(desde)
-        .limit(limite)
+        // .limit(limite)
         .exec((err, usuarios) => {
 
             if (err) {
@@ -54,7 +54,7 @@ app.post('/user', [verificaToken,verificaRol] ,function(req, res) {
         name:{
             first_name : body.first_name,
             last_name : body.last_name},
-        phone : body.phone,
+        informacion:{ phone: body.phone},
         nickname : body.nickname,
         password : bcrypt.hashSync(body.password , 10 ) /* Codifica el password */     
     })
@@ -79,15 +79,18 @@ app.post('/user', [verificaToken,verificaRol] ,function(req, res) {
 
 /* metodo put para actualizacion de users */
 
- app.put('/user/:id',  [verificaToken,verificaRol] ,function(req, res) {
-
+ app.put('/user/:id',[verificaToken,verificaRol] ,function(req, res) {
     let id = req.params.id
-
-    /* Seleccionamos los campos que son disponibles para ser cambiados */
-    let body = _.pick(req.body, ['first_name', 'last_name', 'phone']);
-
-    User.findOneAndUpdate(id , body, { new: true, runValidators: true}, (err, usuarioDB) => {
-
+   
+    User.findByIdAndUpdate(id ,
+        {
+            $set: {
+                informacion:{
+                    phone : req.body.phone} 
+                }
+        }
+    , { new: true, runValidators: true}, (err, usuarioDB) => {
+    
         if(err) {
             return res.status(400).json({
                 ok:false,

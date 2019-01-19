@@ -20,7 +20,9 @@ let userSchema = new Schema({
         last_name : 
         {type: String, required: true}
     }],
-    phone: {type: String, required: true}, /* numero de telefono */
+    informacion:[
+        {phone: {type: String, required: true}}
+    ], /* numero de telefono */
     nickname: {type: String, required: true, unique: true}, /* nickname unico */
     password : {type: String, required: true}, /* password encriptado */
     rol : { type: String, default : 'USER_ROL', enum : rolesValidos}    /* rol en la palicacion */,
@@ -36,4 +38,4 @@ userSchema.plugin( uniqueValidator , { message : '{PATH} debe ser unico.'})
         return userObject
     }
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('user', userSchema)
