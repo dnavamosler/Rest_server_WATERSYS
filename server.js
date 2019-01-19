@@ -13,7 +13,12 @@ var cors = require('cors')
 /* instancia de express */
 const app = express()
 
-app.use(cors())
+var corsOptions = {
+    origin: 'https://water-sys-front.herokuapp.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
+  app.use(cors(corsOptions))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
