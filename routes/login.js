@@ -3,10 +3,10 @@ const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-
+const cors = require('cors')
 const app = express()
 
-   app.post('/login',(req , res) =>{
+   app.post('/login',cors(),(req , res) =>{
 
     let body = req.body
 
