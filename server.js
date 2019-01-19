@@ -13,6 +13,17 @@ var bodyParser = require('body-parser')
 const app = express()
 
 // Add headers
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+/* importacion de rutas*/
+app.use( require('./routes/index'))
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -31,15 +42,6 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-app.use(bodyParser.json())
-
-/* importacion de rutas*/
-app.use( require('./routes/index'))
 
 /* Conexion a base de datos */
 mongoose.connect(process.env.URL_DB, (err , res) => {
