@@ -9,7 +9,7 @@ const app = express()
 app.get('/menu', function(req, res) {
 
     Menu.find({rol: req.headers.rol}, (err, data) =>{
-        
+        console.log(req.headers)
         if(err)
             return res.status(400).json({
                 ok: false,
